@@ -5,7 +5,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
+/**
+ * 
+ * @author Tal Sheinfeld
+ * Our Sokoban distant client class. This will represent a client, that will play on our Sokoban server.
+ * At this moment, this class representing only one distant client that works only with the ASCII representation of the Project.
+ * Right now, when the client disconnects - the server closes.
+ */
 public class CLIClient {
 
 	private void readInputsAndSend(BufferedReader in, PrintWriter out,String exitStr){
@@ -39,6 +45,8 @@ public class CLIClient {
 	
 	public void start(String ip, int port) {
 		try {			
+			//when connection to a server, will communicate until client inserts "exit" as a command.
+			//the server will return "bye" and the client will disconnect
 			Socket theServer=new Socket(ip, port);
 			System.out.println("connected to server");
 			BufferedReader userInput=new BufferedReader(new InputStreamReader(System.in));
